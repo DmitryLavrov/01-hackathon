@@ -7,6 +7,7 @@ import {SoundModule} from './modules/sound.module'
 import {BackgroundModule} from './modules/background.module'
 import {MessageModule} from './modules/message.module'
 import { ColorsModule } from './modules/colors.module'
+import { NotepadModule } from './modules/notepad.module'
 
 const contextMenu = new ContextMenu('#menu')
 
@@ -17,6 +18,7 @@ const soundModule = new SoundModule('sound', 'Случайный звук')
 const backgroundModule = new BackgroundModule('background', 'Поменять цвет')
 const messageModule = new MessageModule('message', 'Кастомное сообщение')
 const colorsModule = new ColorsModule('colors', 'Набор случайных цветов')
+const notepadModule = new NotepadModule('notpad', 'Блокнот')
 
 contextMenu.add(clicksModule)
 contextMenu.add(shapeModule)
@@ -25,3 +27,4 @@ contextMenu.add(soundModule)
 contextMenu.add(backgroundModule)
 contextMenu.add(messageModule)
 contextMenu.add(colorsModule)
+contextMenu.add(notepadModule)
