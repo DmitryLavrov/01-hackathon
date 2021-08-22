@@ -170,7 +170,7 @@ export class NotepadModule extends Module {
         noteList.textContent = ''
         if(notes.length > 0){
           notes.forEach(n => {
-              const p = cel('p')
+              const p = cel('div')
               setStyle(p, this.styles.p)
               p.textContent = n
               noteList.append(p)
