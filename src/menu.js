@@ -29,8 +29,8 @@ export class ContextMenu extends Menu {
 	}
 
 	#setPosition(x, y) {
-		this.el.style.top = `${y}px`;
-		this.el.style.left = `${x}px`;
+		this.el.style.top = `${y - 10}px`;
+		this.el.style.left = `${x - 10}px`;
 	}
 
 	add(module) {

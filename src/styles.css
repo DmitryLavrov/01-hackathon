@@ -11,7 +11,7 @@ body {
 	font-family: "Roboto", sans-serif;
 	height: 100vh;
 	width: 100%;
-	padding: 2rem;
+	overflow: hidden;
 }
 
 .menu {
@@ -22,10 +22,15 @@ body {
 	border-radius: 5px;
 	display: none;
 	list-style: none;
+	transform: scale(0.95);
+	opacity: 0;
+	transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
 .menu.open {
 	display: block;
+	transform: scale(1);
+	opacity: 1;
 }
 
 .menu .menu-item {
@@ -42,8 +47,37 @@ body {
 }
 
 .forClick {
-	background: red;
-	height: 300px;
+	background: #333;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	transition: background 1s ease-in-out;
+}
+
+.info {
+	text-align: center;
+	max-width: 600px;
+	color: #fff;
+	opacity: 0;
+	transform: translateY(50px);
+	animation: fadeIn 2s 0.5s forwards;
+}
+
+.info-title {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.info-text, .info-list {
+	font-size: 1.5rem;
+}
+
+.info-list {
+	list-style: disc inside;
+	margin-top: 1rem;
 }
 
 .timer-block {
@@ -62,4 +96,12 @@ body {
 .timer-block__time {
 	font-size: 50px;
 	color: #ffffff;
+}
+
+
+@keyframes fadeIn {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }

@@ -6,7 +6,7 @@ export class BackgroundModule extends Module {
 	}
 
 	trigger() {
-		document.body.style.backgroundColor = this.#getColor();
+		document.querySelector('.forClick').style.background = this.#getColor();
 	}
 	#getColor() {
 		const letters = '0123456789ABCDEF';
