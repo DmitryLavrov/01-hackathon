@@ -40,3 +40,8 @@ body {
 .menu .menu-item:hover {
 	background: #343434;
 }
+
+.forClick{
+	background: red;
+	height: 300px;
+}
