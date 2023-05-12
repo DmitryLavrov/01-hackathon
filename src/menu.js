@@ -1,4 +1,5 @@
 import { Menu } from './core/menu';
+import { BackgroundModule } from './modules/background.module';
 
 export class ContextMenu extends Menu {
 	constructor() {
@@ -21,12 +22,13 @@ export class ContextMenu extends Menu {
 			this.el.style.left = `${event.clientX}px`;
 			this.open();
 		});
-
-		const element = document.createElement('li');
-		element.className = 'menu-item';
-		element.innerText = 'test_module';
-		element.id = '1';
-		this.el.append(element);
+		const bg = new BackgroundModule();
+		this.el.innerHTML = bg.toHTML();
+		this.el.addEventListener('click', (event) => {
+			if (event.target.dataset.type === 'Module') {
+				bg.trigger();
+			}
+		});
 	}
 
 	run() {
