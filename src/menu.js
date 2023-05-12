@@ -2,15 +2,21 @@ import { Menu } from './core/menu';
 
 export class ContextMenu extends Menu {
 	#modules;
-	constructor(selector) {
+	constructor({ selector, modules }) {
 		super(selector);
 		this.#modules = [];
 
-		const trig = document.querySelector('.forClick');
-		trig.addEventListener('contextmenu', (event) => {
+		const contextMenuTrigger = document.querySelector('.forClick');
+		contextMenuTrigger.addEventListener('contextmenu', (event) => {
 			event.preventDefault();
 			this.#setPosition(event.clientX, event.clientY);
 			this.open();
+		});
+
+		modules.forEach((ModuleClass) => {
+			const module = new ModuleClass();
+			this.#modules.push(module);
+			this.add(module);
 		});
 	}
 
@@ -27,16 +33,11 @@ export class ContextMenu extends Menu {
 		this.el.style.left = `${x}px`;
 	}
 
-	addModule(module) {
-		this.#modules.push(module);
-	}
-
 	add(module) {
 		this.el.innerHTML += module.toHTML();
 	}
 
 	run() {
-		this.#modules.forEach((element) => this.add(element));
 		this.el.addEventListener('click', (event) => {
 			const moduleType = event.target.dataset.type;
 			const moduleToTrigger = this.#modules.find(
