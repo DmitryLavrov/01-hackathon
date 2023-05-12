@@ -1,8 +1,8 @@
-import { Module } from "@/core/module";
+import { Module } from '@/core/module';
 
 export class CountdownTimerModule extends Module {
 	constructor() {
-		super("CountdownTimer", "Timer");
+		super('CountdownTimer', 'Запустить таймер');
 	}
 
 	trigger() {
@@ -10,23 +10,23 @@ export class CountdownTimerModule extends Module {
 	}
 
 	callModalWindow() {
-		let time = +prompt("Введите время в секундах").trim();
+		let time = +prompt('Введите время в секундах').trim();
 
-		if (!isNaN(time)) {
+		if (!isNaN(time) && time > 0) {
 			this.renderingBlock(time);
 		} else {
-			alert("Введенные данные должны быть числом!");
+			alert('Введенные данные должны быть числом и больше 0');
 		}
 	}
 
 	renderingBlock(time) {
 		const bodyElement = document.body;
 
-		const timerBlock = document.createElement("div");
-		const timeElement = document.createElement("span");
+		const timerBlock = document.createElement('div');
+		const timeElement = document.createElement('span');
 
-		timerBlock.className = "timer-block";
-		timeElement.className = "timer-block__time";
+		timerBlock.className = 'timer-block';
+		timeElement.className = 'timer-block__time';
 
 		timeElement.innerHTML = time;
 
