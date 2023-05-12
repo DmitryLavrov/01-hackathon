@@ -1,3 +1,4 @@
+
 import { Menu } from './core/menu';
 
 export class ContextMenu extends Menu {
@@ -15,13 +16,14 @@ export class ContextMenu extends Menu {
 	}
 
 	open() {
-		this.el.classList.add('open');
+		this.el.classList.add("open");
 	}
 
 	close() {
-		this.el.classList.remove('open');
+		this.el.classList.remove("open");
 	}
 
+\
 	#setPosition(x, y) {
 		this.el.style.top = `${y}px`;
 		this.el.style.left = `${x}px`;
