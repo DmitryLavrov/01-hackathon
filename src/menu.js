@@ -1,10 +1,18 @@
-import { Menu } from "./core/menu";
-import { BackgroundModule } from "./modules/background.module";
-import { CountdownTimerModule } from "./modules/countdownTimer.module";
+
+import { Menu } from './core/menu';
 
 export class ContextMenu extends Menu {
-	constructor() {
-		super("#menu");
+	#modules;
+	constructor(selector) {
+		super(selector);
+		this.#modules = [];
+
+		const trig = document.querySelector('.forClick');
+		trig.addEventListener('contextmenu', (event) => {
+			event.preventDefault();
+			this.#setPosition(event.clientX, event.clientY);
+			this.open();
+		});
 	}
 
 	open() {
@@ -15,35 +23,32 @@ export class ContextMenu extends Menu {
 		this.el.classList.remove("open");
 	}
 
-	add() {
-		const trig = document.querySelector(".forClick");
-		trig.addEventListener("contextmenu", (event) => {
-			event.preventDefault();
-			this.el.style.top = `${event.clientY}px`;
-			this.el.style.left = `${event.clientX}px`;
-			this.open();
-		});
+\
+	#setPosition(x, y) {
+		this.el.style.top = `${y}px`;
+		this.el.style.left = `${x}px`;
+	}
 
-		const bg = new BackgroundModule();
+	addModule(module) {
+		this.#modules.push(module);
+	}
 
-		// this.el.innerHTML = bg.toHTML();
-		// this.el.addEventListener("click", (event) => {
-		// 	if (event.target.dataset.type === "Module") {
-		// 		bg.trigger();
-		// 	}
-		// });
-
-		const timer = new CountdownTimerModule();
-
-		this.el.innerHTML = timer.toHTML();
-		this.el.addEventListener("click", (event) => {
-			if (event.target.dataset.type === "CountdownTimer") {
-				timer.trigger();
-			}
-		});
+	add(module) {
+		this.el.innerHTML += module.toHTML();
 	}
 
 	run() {
-		this.add();
+		this.#modules.forEach((element) => this.add(element));
+		this.el.addEventListener('click', (event) => {
+			const moduleType = event.target.dataset.type;
+			const moduleToTrigger = this.#modules.find(
+				(module) => module.type === moduleType,
+			);
+
+			if (moduleToTrigger) {
+				moduleToTrigger.trigger();
+				this.close();
+			}
+		});
 	}
 }
