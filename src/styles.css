@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap");
 
 * {
 	margin: 0;
@@ -8,7 +8,7 @@
 
 body {
 	font-size: 14px;
-	font-family: 'Roboto', sans-serif;
+	font-family: "Roboto", sans-serif;
 	height: 100vh;
 	width: 100%;
 	padding: 2rem;
@@ -33,7 +33,7 @@ body {
 	font-size: 1rem;
 	color: #eee;
 	cursor: pointer;
-	transition: background-color .2s ease-in;
+	transition: background-color 0.2s ease-in;
 	border-radius: inherit;
 }
 
@@ -41,7 +41,25 @@ body {
 	background: #343434;
 }
 
-.forClick{
+.forClick {
 	background: red;
 	height: 300px;
+}
+
+.timer-block {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 200px;
+	height: 100px;
+	top: 20px;
+	right: 20px;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+}
+
+.timer-block__time {
+	font-size: 50px;
+	color: #ffffff;
 }
