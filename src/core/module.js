@@ -14,7 +14,7 @@ export class Module {
     throw new Error(`Trigger method should be implemented in module "${this.type}"`)
   }
 
-  toHTML() {
-    return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
-  }
+	toHTML() {
+		return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`;
+	}
 }
