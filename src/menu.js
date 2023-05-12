@@ -1,14 +1,15 @@
 import { Menu } from './core/menu';
-import { BackgroundModule } from './modules/background.module';
 
 export class ContextMenu extends Menu {
-	constructor() {
-		super('#menu');
+	#modules;
+	constructor(selector) {
+		super(selector);
+		this.#modules = [];
+
 		const trig = document.querySelector('.forClick');
 		trig.addEventListener('contextmenu', (event) => {
 			event.preventDefault();
-			this.el.style.top = `${event.clientY}px`;
-			this.el.style.left = `${event.clientX}px`;
+			this.#setPosition(event.clientX, event.clientY);
 			this.open();
 		});
 	}
@@ -21,18 +22,31 @@ export class ContextMenu extends Menu {
 		this.el.classList.remove('open');
 	}
 
-	add() {
-		const bg = new BackgroundModule();
-		this.el.innerHTML = bg.toHTML();
-		this.el.addEventListener('click', (event) => {
-			if (event.target.dataset.type === bg.type) {
-				bg.trigger();
-				this.close();
-			}
-		});
+	#setPosition(x, y) {
+		this.el.style.top = `${y}px`;
+		this.el.style.left = `${x}px`;
+	}
+
+	addModule(module) {
+		this.#modules.push(module);
+	}
+
+	add(module) {
+		this.el.innerHTML += module.toHTML();
 	}
 
 	run() {
-		this.add();
+		this.#modules.forEach((element) => this.add(element));
+		this.el.addEventListener('click', (event) => {
+			const moduleType = event.target.dataset.type;
+			const moduleToTrigger = this.#modules.find(
+				(module) => module.type === moduleType,
+			);
+
+			if (moduleToTrigger) {
+				moduleToTrigger.trigger();
+				this.close();
+			}
+		});
 	}
 }
