@@ -10,6 +10,7 @@ export class ContextMenu extends Menu {
 			this.el.style.top = `${event.clientY}px`;
 			this.el.style.left = `${event.clientX}px`;
 			this.open();
+			this.close();
 		});
 	}
 
