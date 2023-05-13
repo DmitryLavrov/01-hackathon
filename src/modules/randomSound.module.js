@@ -6,10 +6,10 @@ export class RandomSoundModule extends Module {
 	}
 
 	trigger() {
-		this.iterateFiles();
+		this.playSound();
 	}
 
-	iterateFiles() {
+	playSound() {
 		const pathTosound = "src/static/sounds/";
 		const soundName = "sound";
 		const soundExt = "mp3";
