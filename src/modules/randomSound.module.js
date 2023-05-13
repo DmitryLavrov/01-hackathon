@@ -10,14 +10,14 @@ export class RandomSoundModule extends Module {
 	}
 
 	playSound() {
-		const pathTosound = "src/static/sounds/";
+		const pathToSound = "src/static/sounds/";
 		const soundName = "sound";
 		const soundExt = "mp3";
 		const numberOfSounds = 8;
 		const sounds = [];
 
 		for (let i = 0; i < numberOfSounds; i++) {
-			sounds.push(`${pathTosound}${soundName}-${i + 1}.${soundExt}`);
+			sounds.push(`${pathToSound}${soundName}-${i + 1}.${soundExt}`);
 		}
 
 		const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
