@@ -10,6 +10,7 @@ export class RandomSoundModule extends Module {
 	}
 
 	iterateFiles() {
-		console.log("Работает звук");
+		const audioObj = new Audio("src/static/sounds/sound-007.mp3");
+		audioObj.play();
 	}
 }
