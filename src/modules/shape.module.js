@@ -49,6 +49,7 @@ export class ShapeModule extends Module {
 	}
 
 	#drawCicle(context) {
+		context.beginPath();
 		context.fillStyle = "rgb(200, 0, 0)";
 		context.arc(75, 75, 0, Math.PI * 2, true);
 	}
