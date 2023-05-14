@@ -53,4 +53,13 @@ export class ShapeModule extends Module {
 		context.fillStyle = "rgb(200, 0, 0)";
 		context.arc(75, 75, 0, Math.PI * 2, true);
 	}
+
+	#getColor() {
+		const letters = '0123456789ABCDEF';
+		let color = '#';
+		for (let i = 0; i < 6; i++) {
+			color += letters[Math.floor(Math.random() * 16)];
+		}
+		return color;
+	}
 }
